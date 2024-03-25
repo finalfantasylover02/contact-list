@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            contacts: []// Create post request with postman and brin it into project
+            contacts: [],
+            contact: [] 
         },
         actions: {
             loadContacts: async () => {
@@ -14,6 +15,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({ contacts: data });
                 } catch (error) {
                     console.error('Error loading contacts:', error);
+                }
+            },
+            getContact: async (contactId) => {
+                try {
+                    const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch contact details');
+                    }
+                    const data = await response.json();
+                    setStore({ contact: data });
+                } catch (error) {
+                    console.error('Error getting contact details:', error);
                 }
             },
             addContact: async (newContact) => {
@@ -36,8 +49,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             updateContact: async (updatedContact) => {
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${updatedContact.id}`, {
-                        method: 'PUT',
+                    // Make a PUT request to update the contact with the provided contactId
+                    const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/`, { 
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -47,27 +60,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                         throw new Error('Failed to update contact');
                     }
                     const data = await response.json();
-                    const updatedContacts = getStore().contacts.map(contact =>
-                        contact.id === updatedContact.id ? data : contact
-                    );
-                    setStore({ contacts: updatedContacts });
+                    // Update the store with the updated contact
+                    // Hint: Use the setStore function to update the store state
+                    setStore({ contact: data }); // Fill in the blank to update the store with the updated contact
                 } catch (error) {
                     console.error('Error updating contact:', error);
                 }
             },
-            deleteContact: async (contactId) => {
-                try {
-                    await fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
-                        method: 'DELETE'
-                    });
-                    const updatedContacts = getStore().contacts.filter(contact => contact.id !== contactId);
-                    setStore({ contacts: updatedContacts });
-                } catch (error) {
-                    console.error('Error deleting contact:', error);
-                }
-            }
         }
     };
 };
-
 export default getState;
