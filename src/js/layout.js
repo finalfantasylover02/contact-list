@@ -11,18 +11,16 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div>
+    <Context.Provider value={injectContext()}>
       <Router basename={basename}>
-        <Context.Provider value={injectContext()}>
           <Routes>
             <Route path="/" element={<ContactList />} /> {/* Adjust route for ContactList */}
             <Route path="/contact/:id" element={<ContactCard />} /> {/* Adjust route for ContactCard */}
             {/* Add other routes for your application */}
             <Route path="*" element={<h1>Not found!</h1>} />
           </Routes>
-        </Context.Provider>
       </Router>
-    </div>
+    </Context.Provider>
   );
 };
 
