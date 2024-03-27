@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Context } from '../store/AppContext'; /
+import { Context } from '../store/appContext'; /
 
 const ContactCard = () => {
   const { id } = useParams(); // Get the contact ID from the URL params

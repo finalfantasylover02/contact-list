@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import injectContext from "./store/flux"; // Adjust import path for flux
-import { Context } from "./store/AppContext"; // Adjust import path for appContext
+import { Context } from "./store/appContext"; // Adjust import path for appContext
 import ContactList from "./components/ContactList"; // Import ContactList component
 import ContactCard from "./components/ContactCard"; // Import ContactCard component
 
