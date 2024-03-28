@@ -6,8 +6,8 @@ import ReactDOM from 'react-dom';
 import "../styles/index.css";
 
 // Import your own components
-import ContactCard from './component/ContactCard.jsx'; 
-import ContactList from './component/ContactList.jsx';
+import ContactCard from './components/ContactCard.jsx'; 
+import ContactList from './components/ContactList.jsx';
 
 import Layout from './layout.js';
 
