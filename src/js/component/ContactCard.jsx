@@ -18,7 +18,7 @@ return (
       <p>Name: {contact.name}</p>
       <p>Email: {contact.email}</p>
       <p>Phone: {contact.phone}</p>
-      {/* Display other contact details as needed */}
+      
   </div>
 );
 };
